@@ -210,8 +210,8 @@ export const login = async (req, res, next) => {
                     res.cookie('jwt_token', token, {
                         httpOnly: true,// cannot access cookie via js
                         path: '/',// set the cookie is available from
-                        secure: false,// allow cookies to be sent over sent only http
-                        sameSite: 'lax'// cookie can be shared over all CORS
+                        secure: true,// allow cookies to be sent over sent only http
+                        sameSite: 'none'// cookie can be shared over all CORS
                     });
                     console.log('accesstoken: ', token);
 

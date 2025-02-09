@@ -18,7 +18,7 @@ dotenv.config();
 const server = express();
 const options = {
     // origin: "http://localhost:5173",// only allow this URL
-    // credentials: true// allow cookies over different CORS from frontend
+    credentials: true,// allow cookies over different CORS from frontend
     origin: "https://localhost:5173.onrender.com", // Replace with your actual frontend URL
     methods: "GET,POST,PUT,PATCH,DELETE",
     allowedHeaders: "Content-Type,Authorization",
