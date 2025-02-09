@@ -1,0 +1,68 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          Int       @id @default(autoincrement())
+  name        String
+  about       String
+  age         Int
+  email       String    @unique
+  contact     String
+  password    String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  refreshedToken String? 
+  orderplaces  OrderPlace[] // a user can place multiple orders
+}
+
+model Product {
+  id          Int       @id @default(autoincrement())
+  name        String    @unique
+  description String?
+  price       Decimal
+  ratings     Decimal
+  stock       Int       @default(0)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  brand       String
+  productimg  String?
+  categoryId  Int
+  category    Category @relation(fields: [categoryId], references: [id])
+}
+
+model Category {
+  id          Int         @id @default(autoincrement())
+  name        String      @unique
+  products    Product[]  // One-to-many relation, products can be multiple based on a product
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Cart{
+  id            Int     @id @default(autoincrement())
+  productName   String
+  stock         Int  // If stock is empty after adding in cart of user in near future
+  price         Decimal 
+  user_id       Int 
+  p_id          Int 
+  quantity      Int
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model OrderPlace{
+  id            Int     @id @default(autoincrement())
+  user_id       Int
+  p_id          Int
+  quantity      Int
+  price         Decimal
+  user          User    @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
