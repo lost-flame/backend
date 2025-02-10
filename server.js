@@ -19,8 +19,7 @@ const server = express();
 const options = {
     // origin: "http://localhost:5173",// only allow this URL
     credentials: true,// allow cookies over different CORS from frontend
-    origin: "https://ica-static-webpage.onrender.com", // Replace with your actual frontend URL
-    methods: "GET,POST,PUT,PATCH,DELETE"
+    origin: "https://your-frontend-app.onrender.com" // Replace with your actual frontend URL
 }
 
 server.use(cors(options));
