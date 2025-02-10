@@ -20,8 +20,7 @@ const options = {
     // origin: "http://localhost:5173",// only allow this URL
     credentials: true,// allow cookies over different CORS from frontend
     origin: "https://https://ica-static-webpage.onrender.com", // Replace with your actual frontend URL
-    methods: "GET,POST,PUT,PATCH,DELETE",
-    allowedHeaders: "Content-Type,Authorization",
+    methods: "GET,POST,PUT,PATCH,DELETE"
 }
 
 server.use(cors(options));
