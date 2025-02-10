@@ -20,7 +20,7 @@ const corsOptions = {
     origin: "*",
     credentials: true, // Allow cookies, authorization headers
 };
-
+server.use(cors(corsOptions));
 server.use(cookieparse());
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: true }));
