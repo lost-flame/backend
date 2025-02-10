@@ -16,22 +16,9 @@ const prisma = new PrismaClient();
 dotenv.config();
 
 const server = express();
-// Allow both local development and production frontend
-const allowedOrigins = [
-    "http://localhost:5173",  // Local development
-    "https://frontend1-5hsb.onrender.com/"  // Deployed frontend on Render
-];
-
 const corsOptions = {
-    origin: (origin, callback) => {
-        if (!origin || allowedOrigins.includes(origin)) {
-            callback(null, true);
-        } else {
-            callback(new Error("CORS not allowed"));
-        }
-    },
+    origin: "*",
     credentials: true, // Allow cookies, authorization headers
-    optionsSuccessStatus: 200 // Fixes issues with some legacy browsers
 };
 
 server.use(cookieparse());
