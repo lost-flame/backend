@@ -16,13 +16,24 @@ const prisma = new PrismaClient();
 dotenv.config();
 
 const server = express();
-const options = {
-    // origin: "http://localhost:5173",// only allow this URL
-    credentials: true,// allow cookies over different CORS from frontend
-    origin: "https://your-frontend-app.onrender.com" // Replace with your actual frontend URL
-}
+// Allow both local development and production frontend
+const allowedOrigins = [
+    "http://localhost:5173",  // Local development
+    "https://your-frontend-app.onrender.com"  // Deployed frontend on Render
+];
 
-server.use(cors(options));
+const corsOptions = {
+    origin: (origin, callback) => {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error("CORS not allowed"));
+        }
+    },
+    credentials: true, // Allow cookies, authorization headers
+    optionsSuccessStatus: 200 // Fixes issues with some legacy browsers
+};
+
 server.use(cookieparse());
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: true }));
