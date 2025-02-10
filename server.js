@@ -19,7 +19,7 @@ const server = express();
 // Allow both local development and production frontend
 const allowedOrigins = [
     "http://localhost:5173",  // Local development
-    "https://your-frontend-app.onrender.com"  // Deployed frontend on Render
+    "https://frontend1-5hsb.onrender.com/"  // Deployed frontend on Render
 ];
 
 const corsOptions = {
