@@ -17,10 +17,7 @@ dotenv.config();
 
 const server = express();
 const corsOptions = {
-    origin: [ "*"
-        // "http://localhost:5173",  
-        // "https://frontend1-5hsb.onrender.com"
-    ],
+    origin: "*",
     credentials: true, // Allow cookies, authorization headers
 };
 server.use(cors(corsOptions));
