@@ -16,11 +16,23 @@ const prisma = new PrismaClient();
 dotenv.config();
 
 const server = express();
+<<<<<<< HEAD
 const corsOptions = {
     origin: "*",
     credentials: true, // Allow cookies, authorization headers
 };
 server.use(cors(corsOptions));
+=======
+const options = {
+    // origin: "http://localhost:5173",// only allow this URL
+    credentials: true,// allow cookies over different CORS from frontend
+    origin: "https://frontend1-5hsb.onrender.com", // Replace with your actual frontend URL
+    methods: "GET,POST,PUT,PATCH,DELETE",
+    allowedHeaders: "Content-Type,Authorization",
+}
+
+server.use(cors(options));
+>>>>>>> b18d2e5 (Fixed CORS issue)
 server.use(cookieparse());
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: true }));
