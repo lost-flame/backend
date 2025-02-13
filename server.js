@@ -37,7 +37,7 @@ server.use(bodyParser.urlencoded({ extended: true }));
 
 // this will serve files in the uploads directory under the /uploads URL path.
 server.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-
+server.use(express.static(path.join(__dirname,'public')));
 server.use('/user', userRouter);
 server.use('/product', productRouter);
 
