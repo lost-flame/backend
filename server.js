@@ -16,11 +16,11 @@ const prisma = new PrismaClient();
 dotenv.config();
 
 const server = express();
-const corsOptions = {
-    origin: "*",
-    credentials: true, // Allow cookies, authorization headers
-};
-server.use(cors(corsOptions));
+// const corsOptions = {
+//     origin: "*",
+//     credentials: true, // Allow cookies, authorization headers
+// };
+// server.use(cors(corsOptions));
 
 const options = {
     // origin: "http://localhost:5173",// only allow this URL
