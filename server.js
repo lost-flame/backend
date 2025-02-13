@@ -26,8 +26,8 @@ const options = {
     // origin: "http://localhost:5173",// only allow this URL
     credentials: true,// allow cookies over different CORS from frontend
     origin: "https://frontend1-5hsb.onrender.com", // Replace with your actual frontend URL
-    methods: "GET,POST,PUT,PATCH,DELETE",
-    allowedHeaders: "Content-Type,Authorization",
+    // methods: "GET,POST,PUT,PATCH,DELETE",
+    // allowedHeaders: "Content-Type,Authorization",
 }
 
 server.use(cors(options));
@@ -41,13 +41,13 @@ server.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 server.use('/user', userRouter);
 server.use('/product', productRouter);
 
-const srvr = server.listen(process.env.PORT, () => { console.log(`server is running at ${process.env.PORT}`); });
+server.listen(process.env.PORT, () => { console.log(`server is running at ${process.env.PORT}`); });
 
-process.on('SIGINT', async () => {// signal interrupt => SIGINT
-    console.log('Shutting down server...');
-    await prisma.$disconnect(); // disconnecting the prisma
-    srvr.close(() => {
-        console.log('Server closed.');
-        process.exit(0);
-    });
-});
+// process.on('SIGINT', async () => {// signal interrupt => SIGINT
+//     console.log('Shutting down server...');
+//     await prisma.$disconnect(); // disconnecting the prisma
+//     srvr.close(() => {
+//         console.log('Server closed.');
+//         process.exit(0);
+//     });
+// });
